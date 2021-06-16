@@ -1,7 +1,6 @@
 {
   "name": "project-two",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "jest",
@@ -18,16 +17,18 @@
   },
   "homepage": "https://github.com/PacSmack/advanced-task-organizer#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
-    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
-    "node": "^16.3.0",
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
     "jest": "^27.0.4"
-  }
+  },
+  "description": ""
 }
