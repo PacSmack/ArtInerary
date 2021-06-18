@@ -1,6 +1,6 @@
 const router = require('express').Router();
- //waiting for model to be created 
- //const { User } = require('../../models');
+//waiting for model to be created 
+const { User } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
                     model: Post,
                     attributes: ['title']
                 }
-            }            
+            }
         ]
     })
         .then(dbUserData => {
