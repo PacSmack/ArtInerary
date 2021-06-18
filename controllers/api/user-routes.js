@@ -1,6 +1,6 @@
 const router = require('express').Router();
  //waiting for model to be created 
- //const { User } = require('../../models');
+const { User } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -52,6 +52,7 @@ router.get('/:id', (req, res) => {
 
 // POST /api/users
 router.post('/', (req, res) => {
+    console.log(req.session)
     User.create({
         username: req.body.username,
         email: req.body.email,
