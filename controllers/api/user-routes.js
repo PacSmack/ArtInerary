@@ -1,5 +1,4 @@
 const router = require('express').Router();
-//waiting for model to be created 
 const { User, Image } = require('../../models');
 
 /* working */ // GET /api/users
