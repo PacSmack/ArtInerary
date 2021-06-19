@@ -1,69 +1,78 @@
 // import all models
-const Post = require('./Post');
+const Image = require('./Image');
 const User = require('./User');
-const Vote = require('./Vote');
-const Comment = require('./Comment');
+const Like = require('./Like');
+const Reference = require('./Reference');
 
 // create associations
-User.hasMany(Post, {
+User.hasMany(Image, {
     foreignKey: 'user_id'
 });
 
-Post.belongsTo(User, {
+Image.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-User.belongsToMany(Post, {
-    through: Vote,
-    as: 'voted_posts',
+User.belongsToMany(Image, {
+    through: Like,
+    as: 'liked_Images',
 
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Post.belongsToMany(User, {
-    through: Vote,
-    as: 'voted_posts',
-    foreignKey: 'post_id',
+Image.belongsToMany(User, {
+    through: Like,
+    as: 'liked_images',
+    foreignKey: 'image_id',
     onDelete: 'SET NULL'
 });
 
-Vote.belongsTo(User, {
+Like.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Vote.belongsTo(Post, {
-    foreignKey: 'post_id',
+Like.belongsTo(Image, {
+    foreignKey: 'image_id',
     onDelete: 'SET NULL'
 });
 
-User.hasMany(Vote, {
+User.hasMany(Like, {
     foreignKey: 'user_id'
 });
 
-Post.hasMany(Vote, {
-    foreignKey: 'post_id'
+Image.hasMany(Like, {
+    foreignKey: 'image_id'
 });
 
-Comment.belongsTo(User, {
+Reference.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Comment.belongsTo(Post, {
-    foreignKey: 'post_id',
+Reference.belongsTo(Image, {
+    foreignKey: 'image_id',
     onDelete: 'SET NULL'
 });
 
-User.hasMany(Comment, {
+User.hasMany(Reference, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Post.hasMany(Comment, {
-    foreignKey: 'post_id'
+Image.belongsTo(Reference, {
+    foreignKey: 'reference_id',
 });
 
-module.exports = { User, Post, Vote, Comment };
+Reference.hasMany(User, {
+    foreignKey: 'user_id'
+
+});
+
+Reference.hasMany(Image, {
+    foreignKey: 'image_id'
+});
+
+module.exports = { User, Image, Like, Reference };

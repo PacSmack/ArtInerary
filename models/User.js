@@ -37,7 +37,11 @@ User.init(
             validate: {
                 len: [4]
             }
-        }
+        },
+        catchphrase: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
     },
     {
         hooks: {
