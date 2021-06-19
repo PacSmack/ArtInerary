@@ -5,6 +5,7 @@ const Like = require('./Like');
 const Reference = require('./Reference');
 
 // create associations
+
 User.hasMany(Image, {
     foreignKey: 'user_id'
 });
@@ -74,5 +75,6 @@ Reference.hasMany(User, {
 Reference.hasMany(Image, {
     foreignKey: 'image_id'
 });
+
 
 module.exports = { User, Image, Like, Reference };
