@@ -30,14 +30,22 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 
-app.use(session(sess))
+// app.use(session(sess))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes)
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log(`Now listening to ${PORT}`));
 });
 
