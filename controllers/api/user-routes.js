@@ -1,8 +1,7 @@
 const router = require('express').Router();
- //waiting for model to be created 
- //const { User } = require('../../models');
+const { User, Image } = require('../../models');
 
-// GET /api/users
+/* working */ // GET /api/users
 router.get('/', (req, res) => {
     // access ou user model and run findall method
     User.findAll({
@@ -15,27 +14,19 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET /api/users/1
+/* working/just need to fix the image model to include in the users*/ // GET /api/users/1
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         },
-        include: [
-            {
-                model: Post,
-                attributes: ['id', 'title', 'post_url', 'created_at']
-            },
-            {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'created_at'],
-                include: {
-                    model: Post,
-                    attributes: ['title']
-                }
-            }            
-        ]
+        // include: [
+        //     {
+        //         model: Image,
+        //         attributes: ['id', 'image_url', 'title']
+        //     },            
+        // ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -50,8 +41,9 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST /api/users
+/* working */ // POST /api/users
 router.post('/', (req, res) => {
+    console.log(req.session)
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -68,6 +60,7 @@ router.post('/', (req, res) => {
         })
 });
 
+/* working */ //Login /api/users/login
 router.post('/login', (req, res) => {
     //query operation
     User.findOne({
@@ -99,6 +92,7 @@ router.post('/login', (req, res) => {
     });
 });
 
+/* working */
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -110,7 +104,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-// PUT /api/users/1
+/* working */ // PUT /api/users/1
 router.put('/:id', (req, res) => {
     // if req body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
@@ -132,7 +126,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-// DELETE /api/users/1
+/* working */ // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
     User.destroy({
         where: {

@@ -1,11 +1,11 @@
 {
   "name": "project-two",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,17 +18,22 @@
   },
   "homepage": "https://github.com/PacSmack/advanced-task-organizer#readme",
   "dependencies": {
+<<<<<<< HEAD
     "bulma": "^0.9.2",
+=======
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
+>>>>>>> ba1e2336492b5de78d015270da315c2fb71f5764
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
     "handlebars": "^4.7.7",
-    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
-    "node": "^16.3.0",
     "sequelize": "^6.6.2"
   },
   "devDependencies": {
     "jest": "^27.0.4"
-  }
+  },
+  "description": ""
 }
