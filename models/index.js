@@ -26,7 +26,7 @@ User.belongsToMany(Image, {
 Image.belongsToMany(User, {
     through: Like,
     as: 'liked_images',
-    foreignKey: 'image_id',
+    foreignKey: 'like_id',
     onDelete: 'SET NULL'
 });
 
@@ -48,29 +48,15 @@ Image.hasMany(Like, {
     foreignKey: 'image_id'
 });
 
-// Reference.belongsTo(User, {
-//     foreignKey: 'user_id',
-//     onDelete: 'SET NULL'
-// });
-
-// Reference.belongsTo(Image, {
-//     foreignKey: 'image_id',
-//     onDelete: 'SET NULL'
-// });
+Reference.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+});
 
 User.hasMany(Reference, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
-
-Image.belongsTo(Reference, {
-    foreignKey: 'reference_id',
-});
-
-// Reference.hasMany(User, {
-//     foreignKey: 'user_id'
-
-// });
 
 Reference.hasMany(Image, {
     foreignKey: 'image_id'
