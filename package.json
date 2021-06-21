@@ -18,12 +18,8 @@
   },
   "homepage": "https://github.com/PacSmack/advanced-task-organizer#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "bulma": "^0.9.2",
-=======
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.1",
->>>>>>> ba1e2336492b5de78d015270da315c2fb71f5764
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",

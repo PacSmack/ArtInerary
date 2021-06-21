@@ -1,0 +1,3 @@
+DB_NAME='ArtInerary_db'
+DB_USER='root'
+DB_PW='Drm71vmm77!'
