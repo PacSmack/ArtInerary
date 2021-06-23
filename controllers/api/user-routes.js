@@ -26,13 +26,11 @@ router.get('/:id', (req, res) => {
                 model: Image,
                 attributes: ['id', 'image_url', 'title']
             },
-        ],
-        include: [
             {
                 model: Motto,
                 attributes: ['catchphrase']
             }
-        ]
+        ],
     })
         .then(dbUserData => {
             if (!dbUserData) {

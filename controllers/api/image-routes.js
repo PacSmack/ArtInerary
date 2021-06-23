@@ -4,13 +4,8 @@ const sequelize = require('../../config/connection');
 const cloudinary = require('cloudinary').v2;
 const withAuth = require('../../utils/auth');
 
-
-
-
 require("dotenv").config();
 require("../../config/cloudinary");
-
-
 
 /*not working // user not associated to image model */
 router.get('/', (req, res) => {
@@ -33,7 +28,7 @@ router.get('/', (req, res) => {
         });
 });
 
-/* same issue as the get all */
+/* not working same issue as the get all */
 router.get('/:id', (req, res) => {
     Image.findOne({
         where: {
@@ -86,7 +81,7 @@ router.post('/upload', withAuth, (req, res) => {
     return res.json(500);
 });
 
-/* working */
+/* not working */
 router.delete('/:id', (req, res) => {
     Image.destroy({
         where: {
