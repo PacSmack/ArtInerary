@@ -3,6 +3,7 @@ const Image = require('./Image');
 const User = require('./User');
 const Like = require('./Like');
 const Reference = require('./Reference');
+const Motto = require('./Motto');
 
 // create associations
 
@@ -26,7 +27,7 @@ User.belongsToMany(Image, {
 Image.belongsToMany(User, {
     through: Like,
     as: 'liked_images',
-    foreignKey: 'image_id',
+    foreignKey: 'like_id',
     onDelete: 'SET NULL'
 });
 
@@ -53,23 +54,18 @@ Reference.belongsTo(User, {
     onDelete: 'SET NULL'
 });
 
-Reference.belongsTo(Image, {
-    foreignKey: 'image_id',
-    onDelete: 'SET NULL'
+User.hasOne(Motto, {
+    foreignKey: 'user_id',    
 });
+
+Motto.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+})
 
 User.hasMany(Reference, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
-});
-
-Image.belongsTo(Reference, {
-    foreignKey: 'reference_id',
-});
-
-Reference.hasMany(User, {
-    foreignKey: 'user_id'
-
 });
 
 Reference.hasMany(Image, {
@@ -77,4 +73,6 @@ Reference.hasMany(Image, {
 });
 
 
-module.exports = { User, Image, Like, Reference };
+
+
+module.exports = { User, Image, Like, Reference, Motto };

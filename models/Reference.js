@@ -43,7 +43,7 @@ Reference.init(
         },
         reference_url: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isURL: true
             }
