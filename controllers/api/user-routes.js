@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Image } = require('../../models');
+const { User, Image, Motto } = require('../../models');
 
 /* working */ // GET /api/users
 router.get('/', (req, res) => {
@@ -14,19 +14,25 @@ router.get('/', (req, res) => {
         });
 });
 
-/* working/just need to fix the image model to include in the users*/ // GET /api/users/1
+/* working */ // GET /api/users/1
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         },
-        // include: [
-        //     {
-        //         model: Image,
-        //         attributes: ['id', 'image_url', 'title']
-        //     },            
-        // ]
+        include: [
+            {
+                model: Image,
+                attributes: ['id', 'image_url', 'title']
+            },
+        ],
+        include: [
+            {
+                model: Motto,
+                attributes: ['catchphrase']
+            }
+        ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -57,6 +63,9 @@ router.post('/', (req, res) => {
 
                 res.json(dbUserData);
             })
+        })
+        .catch(err => {
+            console.log(err);
         })
 });
 
@@ -145,5 +154,68 @@ router.delete('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+/* working */
+router.post('/motto', (req, res) => {
+    if (req.session) {
+        Motto.create({
+            catchphrase: req.body.catchphrase,
+            user_id: req.session.user_id
+        })
+            .then(dbMottoData => res.json(dbMottoData))
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            })
+    }
+});
+
+/* working */
+router.put('/motto/:id', (req, res) => {
+    if (req.session) {
+        Motto.update(
+            {
+                catchphrase: req.body.catchphrase,
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        )
+        .then(dbMottoData => {
+            if(!dbMottoData) {
+                res.status(404).json({ message: 'No motto found with this id'});
+                return;
+            }
+            res.json(dbMottoData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
+});
+
+/*working */
+router.delete('/motto/:id', (req, res) => {
+    if (req.session)
+    Motto.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbMottoData => {
+        if(!dbMottoData) {
+            res.status(404).json({ message: 'No motto found with this id '});
+            return;
+        }
+        res.json(dbMottoData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
 
 module.exports = router;
