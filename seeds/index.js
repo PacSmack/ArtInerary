@@ -2,8 +2,10 @@ const seedUsers = require('./user-seeds');
 const seedImages = require('./image-seeds');
 const seedReferences = require('./reference-seeds');
 const seedLikes = require('./like-seeds');
+const seedMotto = require('./motto-seeds')
 
 const sequelize = require('../config/connection');
+
 
 const seedAll = async () => {
     await sequelize.sync({ force: true });
@@ -19,6 +21,9 @@ const seedAll = async () => {
 
     await seedLikes();
     console.log('--------------');
+
+    await seedMotto();
+    console.log('--------------')
 
     process.exit(0);
 };
