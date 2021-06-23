@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { User, Image } = require('../../models');
 const sequelize = require('../../config/connection');
 const cloudinary = require('cloudinary').v2;
-const fileupload = require('express-fileupload'); 
+const withAuth = require('../../utils/auth');
+
 
 
 
@@ -62,31 +63,18 @@ router.get('/:id', (req, res) => {
 })
 
 /*working*/
-router.post('/upload', (req, res) => {  
-    // try {
-    //     const fileStr = req.body.data;
-    //     const uploadResponse = cloudinary.uploader.upload(fileStr, {
-    //         upload_preset: 'ml_default'
-    //     });
-    //     console.log(uploadResponse)
-    //     res.json({ msg: 'it worked'});
-
-    // } catch(err) {
-    //     console.log(err);
-    //     res.status(500).json({err: 'Something went wrong'})
-    // }    
-    cloudinary.uploader.upload(req.body.data, (error, result) => {
-        console.log('teste log')
+router.post('/upload', withAuth, (req, res) => {      
+    cloudinary.uploader.upload(req.body.data, (error, result) => {        
         console.log(result, error)
-        if (result) {  
-            console.log('teste log2')          
+        if (result) {                                 
             Image.create({
                 title: req.body.title,
                 image_url: result.url,
                 user_id: req.session.user_id                
             })
                 .then(image => {
-                    console.log('file uploaded');                       
+                    console.log('file uploaded');
+                    console.dir(image)    
                 })
                 .catch(err => {
                     console.log(err);
