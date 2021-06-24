@@ -13,11 +13,11 @@ const seedAll = async () => {
     await seedUsers();
     console.log('--------------');
 
-    await seedImages();
-    console.log('--------------');
-
     await seedReferences();
     console.log('--------------');
+
+    await seedImages();
+    console.log('--------------');    
 
     await seedLikes();
     console.log('--------------');

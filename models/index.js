@@ -49,11 +49,6 @@ Image.hasMany(Like, {
     foreignKey: 'image_id'
 });
 
-Reference.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
-
 User.hasOne(Motto, {
     foreignKey: 'user_id',    
 });
@@ -61,16 +56,16 @@ User.hasOne(Motto, {
 Motto.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
-})
+});
 
-User.hasMany(Reference, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
+Image.belongsTo(Reference, {
+    foreignKey: 'reference_id'
 });
 
 Reference.hasMany(Image, {
-    foreignKey: 'image_id'
+    foreignKey: 'reference_id'
 });
+
 
 
 
