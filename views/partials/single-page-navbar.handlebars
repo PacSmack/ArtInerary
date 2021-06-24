@@ -1,0 +1,33 @@
+<nav class="navbar max-height:8.75rem;" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="https://res.cloudinary.com/pacsmack/image/upload/v1624541482/Assets/logo_transparent_szc7jp.png">
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+            <div class="navbar-item" id="single-page-btn">
+
+                <div class="buttons">
+                    {{#if loggedIn}}
+                    <button id="logout" class="button is-danger">logout</button>
+                    {{else}}
+                    <a class="button is-primary" id="signup-modal">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light login-btn" id="login-modal-btn">
+                        Log in
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -11,6 +11,19 @@ body {
   display: table-cell;
 }
 
+img { 
+    height: 425px;
+    max-width: 100%;
+}
+
+#main-page-btn {
+  padding-top: 30px;
+}
+
+#single-page-btn {
+  padding-top: 0;
+}
+
 .px-5 {
   padding-left: 4.5rem!important;
   padding-right: 4.5rem!important;
