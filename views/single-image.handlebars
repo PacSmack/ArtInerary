@@ -1,0 +1,12 @@
+
+<h2>{{image.title}}</h2>
+
+</ol>
+<ol class="image-grid">
+    {{#each image.images as |image|}}
+        <div class="tile is-ancestor">
+        {{> image-card image}}     
+        </div>
+        {{/each}}
+</ol>
+<script src="/javascript/single-image.js"></script>

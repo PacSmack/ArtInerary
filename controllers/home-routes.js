@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
     })
         .then(dbImageData => {
             const images = dbImageData.map(image => image.get({ plain: true }))
+            console.log(images);
             res.render('homepage', {
                 images
 
@@ -70,9 +71,9 @@ router.get('/image/:id', (req, res) => {
 
             const image = dbImageData.get({ plain: true })
 
-            res.render('single-image', {
+            res.render('single-image', 
                 image
-            });console.log(image)
+            );console.log(image)
         })
         .catch(err => {
             console.log(err);
