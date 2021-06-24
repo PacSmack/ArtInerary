@@ -35,8 +35,7 @@ const referencedata = [
     },
     {
         title: 'Starriest Night',
-        reference_url: 'https://res.cloudinary.com/scarrlettearianne/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1624566518/REFERENCES/Screen_Shot_2021-06-24_at_1.27.35_PM_d3nt3r.png
-'
+        reference_url: 'https://res.cloudinary.com/scarrlettearianne/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1624566518/REFERENCES/Screen_Shot_2021-06-24_at_1.27.35_PM_d3nt3r.png'
     },
     {
         title: 'Hummingbird',
