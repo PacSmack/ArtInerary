@@ -66,8 +66,4 @@ Reference.hasMany(Image, {
     foreignKey: 'reference_id'
 });
 
-
-
-
-
 module.exports = { User, Image, Like, Reference, Motto };

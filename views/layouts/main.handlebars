@@ -4,36 +4,100 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ArtInerary</title>
-  <link rel="stylesheet" href="/public/stylesheet/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/stylesheet/style.css">
+
 </head>
 
-<body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">ArtInerary</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">My Collection Dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
+<body>    
+
+  <!-- signup modal -->
+  <div class="modal" id="signupModal">
+    <div class="modal-background" id="signupBg"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="has-text-centered title mb-6" id="modal-text">Join Our Art Club!</h3>
+
+      <form id="signup-form">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" id="email-signup-input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="username-signup-input" type="text" placeholder="Username">
+            <span class="icon is-small is-left">
+              <i class="far fa-user"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="password-signup-input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="centered-btn column has-text-centered is-2">
+          <button class="button is-primary is-centered" type="submit" id="signup-btn">Signup!</button>
+        </div>
+    </div>
+    </form>
   </div>
-  
+
+  {{!-- login modal --}}
+  <div class="modal" id="login-modal">
+    <div class="modal-background" id="login-modal-bg"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="has-text-centered title mb-6" id="modal-text">Welcome Back!</h3>
+
+      <form class="login-form" id="login-form">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" id="email-login-input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="password-login-input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="centered-btn column has-text-centered is-2">
+          <button class="button is-primary is-centered" type="submit" id="login-btn">Login!</button>
+        </div>
+    </div>
+    </form>
+  </div>
+
+  {{{ body }}}
+
+
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
+  {{else}}
+  <script src="/javascript/login-modal.js"></script>
+  <script src="/javascript/signup-modal.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   {{/if}}
 </body>
 

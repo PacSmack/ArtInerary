@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 });
 
 /* working */ // POST /api/users
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
     console.log(req.session)
     User.create({
         username: req.body.username,
@@ -95,6 +95,7 @@ router.post('/login', (req, res) => {
             req.session.loggedIn = true;
 
             res.json({ user: dbUserData, message: 'You are now logged in!' });
+            console.log(req.session)
         });
     });
 });

@@ -1,0 +1,28 @@
+{{> single-page-navbar }}
+
+
+{{> single-image image }}
+
+
+
+<div class="columns is multiline is-centered px-5">
+
+{{#each image.images}}
+    <div class="column is-one-quarter is-3">
+        
+        <article class="tile is-child box" id="card-image">
+
+            <figure class="image has-ratio">
+
+                
+                <img class="has-ratio" src="{{image_url}}">
+                
+
+            </figure>
+
+            <p class="title">{{title}}</p>
+        </article>
+        
+    </div>
+{{/each}}
+</div>
