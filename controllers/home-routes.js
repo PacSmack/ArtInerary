@@ -22,7 +22,8 @@ router.get('/', (req, res) => {
         .then(dbImageData => {
             const images = dbImageData.map(image => image.get({ plain: true }))
             res.render('homepage', {
-                images
+                images,
+                loggedIn: req.session.loggedIn
 
             }); console.log(images)
         })
@@ -44,7 +45,7 @@ router.get('/image/:id', (req, res) => {
     Reference.findOne({
         where: {
             id: req.params.id
-        },
+        }, 
         attributes: [
             'id',
             'title',
@@ -71,14 +72,15 @@ router.get('/image/:id', (req, res) => {
             const image = dbImageData.get({ plain: true })
 
             res.render('single-image', {
-                image
+                image,
+                loggedIn: req.session.loggedIn
             });console.log(image)
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         })
-})
+});
 
 
 

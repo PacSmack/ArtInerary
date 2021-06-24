@@ -8,14 +8,14 @@
   <title>ArtInerary</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <link rel="stylesheet" href="/stylesheet/style.css">
-  
+
 </head>
 
 <body>
-  <nav class="navbar navbar-height:300px" role="navigation" aria-label="main navigation">
+  <nav class="navbar max-height:8.75rem;" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <img src="https://res.cloudinary.com/pacsmack/image/upload/v1624514743/Assets/logo_transparent_szc7jp.png"  >
+        <img src="https://res.cloudinary.com/pacsmack/image/upload/v1624514743/Assets/logo_transparent_szc7jp.png">
       </a>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -28,29 +28,110 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-end">
         <div class="navbar-item">
+
           <div class="buttons">
+            {{#if loggedIn}}
+            <button id="logout" class="button is-danger">logout</button>
+            {{else}}
             <a class="button is-primary" id="signup-modal">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
+            <a class="button is-light login-btn" id="login-modal-btn">
               Log in
             </a>
+            {{/if}}
           </div>
         </div>
       </div>
     </div>
   </nav>
 
-<!-- modal -->
-  <div class="modal ">
-    <div class="modal-background"></div>
-    <div class="modal-content has-background-white py-5 px-5"> 
-      <h3 class="title mb-6">Join Our Art Club!</h3>
+  <!-- signup modal -->
+  <div class="modal" id="signupModal">
+    <div class="modal-background" id="signupBg"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="has-text-centered title mb-6">Join Our Art Club!</h3>
+
+      <form id="signup-form">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" id="email-signup-input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="username-signup-input" type="text" placeholder="Username">
+            <span class="icon is-small is-left">
+              <i class="far fa-user"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="password-signup-input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="centered-btn column has-text-centered is-2">
+          <button class="button is-primary is-centered" type="submit" id="signup-btn">Signup!</button>
+        </div>
     </div>
+    </form>
   </div>
 
+  {{!-- login modal --}}
+  <div class="modal" id="login-modal">
+    <div class="modal-background" id="login-modal-bg"></div>
+    <div class="modal-content has-background-white py-5 px-5">
+      <h3 class="has-text-centered title mb-6">Welcome Back!</h3>
+
+      <form class="login-form" id="login-form">
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" id="email-login-input" type="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-check"></i>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" id="password-login-input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+
+        <div class="centered-btn column has-text-centered is-2">
+          <button class="button is-primary is-centered" type="submit" id="login-btn">Login!</button>
+        </div>
+    </div>
+    </form>
+  </div>
+
+  {{{ body }}}
+
+
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{else}}
+  <script src="/javascript/login-modal.js"></script>
   <script src="/javascript/signup-modal.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  {{/if}}
 </body>
 
 
