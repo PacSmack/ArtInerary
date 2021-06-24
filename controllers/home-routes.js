@@ -22,8 +22,9 @@ router.get('/', (req, res) => {
         .then(dbImageData => {
             const images = dbImageData.map(image => image.get({ plain: true }))
             res.render('homepage', {
-                images                
-            });
+                images
+
+            }); console.log(images)
         })
         .catch(err => {
             console.log(err);
@@ -61,22 +62,22 @@ router.get('/image/:id', (req, res) => {
             }
         ]
     })
-    .then(dbImageData => {
-        if(!dbImageData) {
-            res.status(404).json({message: 'No post found with this id'});
-            return;
-        }
+        .then(dbImageData => {
+            if (!dbImageData) {
+                res.status(404).json({ message: 'No post found with this id' });
+                return;
+            }
 
-        const image = dbImageData.get({ plain: true})
+            const image = dbImageData.get({ plain: true })
 
-        res.render('single-image', {
-            image           
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
+            res.render('single-image', {
+                image
+            });console.log(image)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 })
 
 
