@@ -9,15 +9,9 @@ require("dotenv").config();
 require("./handlers/cloudinary");
 
 const exphbs = require('express-handlebars');
-<<<<<<< HEAD
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-app.get("/", (req, res) => res.render("index"));
-=======
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const cloudinary = require('cloudinary').v2;
->>>>>>> 481413228616292cb18c0dc47de3c768e6366ef4
 
 // app.post("/uploads", upload.single("image"), (req, res) => {
 //     res.send(req.file);
@@ -70,14 +64,10 @@ app.delete("/files", (req, res) => {
     cloudinary.v2.api.delete_resources([id], function (error, result) { console.log(result); });
 });
 
-<<<<<<< HEAD
-
-=======
 app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
->>>>>>> 481413228616292cb18c0dc47de3c768e6366ef4
 
 
 const PORT = process.env.PORT || 5000;
