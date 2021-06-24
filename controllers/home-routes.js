@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Image, User, Like, Reference } = require('../models');
+const { Image, User, Reference } = require('../models');
 
 // render homepage
 router.get('/', (req, res) => {
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'image_url', 
-            [sequelize.literal('(SELECT COUNT(*) FROM LIKE WHERE image.id = like.image_id)'), 'like_count']                   
+            //[sequelize.literal('(SELECT COUNT(*) FROM LIKE WHERE image.id = like.image_id)'), 'like_count']                   
         ],
         include: [
             {
