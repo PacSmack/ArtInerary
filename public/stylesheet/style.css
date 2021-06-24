@@ -34,6 +34,12 @@ img {
   text-align: center;
 }
 
+.subtitle {
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+}
+
 #main-page-btn {
   padding-top: 30px;
 }
