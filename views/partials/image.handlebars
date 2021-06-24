@@ -1,0 +1,11 @@
+<article class="image">
+    <div class="title">
+        <a href="{{image_url}}" target="_blank">{{title}}</a>
+        <span>({{format_url image_url}})</span>
+    </div>
+    <div class="meta">
+        {{vote_count}} {{format_plural "point" vote_count}} by {{user.username}} on {{format_date created_at}}
+        |
+        <a href="/image/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+    </div>
+</article>

@@ -1,0 +1,50 @@
+<section class="section">
+    <div class="container">
+        <!-- Start Carousel -->
+        <div id="carousel-demo" class="carousel">
+            <div class="carousel" data-slides-to-scroll="2">
+                <div class="item-1">
+                    <img src="assets/ARTinerary Photos for Site/1/Reference 1.jpg">
+                </div>
+                <div class="item-2"></div>
+                <div class="item-3"></div>
+            </div>
+        </div>
+        <!-- End Carousel -->
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+<script>
+    bulmaCarousel.attach('#carousel-demo', {
+        slidesToScroll: 1,
+        slidesToShow: 4
+    });
+</script>
+</body>
+
+
+
+
+
+
+
+
+{{!-- {{#if loggedIn}}
+<form class="comment-form">
+    <div>
+        <textarea name="comment-body"></textarea>
+    </div>
+
+    <div>
+        <button type="submit">add comment</button>
+        <button type="button" class="upvote-btn">upvote</button>
+    </div>
+</form>
+{{/if}}
+
+{{> comments image.comments}}
+
+{{!-- {{#if loggedIn}}
+<script src="/javascript/like.js"></script>
+{{/if}} --}} --}}
