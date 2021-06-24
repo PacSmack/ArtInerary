@@ -19,22 +19,24 @@ async function signupFormhandler(event) {
     const usernameSignForm = document.querySelector('#username-signup-input').value.trim();
     const passwordSignForm = document.querySelector('#password-signup-input').value.trim();
 
-    if(usernameSignForm && emailSignForm && passwordSignForm){
+    if (usernameSignForm && emailSignForm && passwordSignForm) {
         const response = await fetch('/api/users/signup', {
-            method:'post',
+            method: 'post',
             body: JSON.stringify({
                 email: emailSignForm,
                 username: usernameSignForm,
                 password: passwordSignForm
             }),
-            headers: {'Content-Type':'application/json'}
-        }) 
-        if(response.ok){
-            document.location.replace('/');
+            headers: { 'Content-Type': 'application/json' }
+        })
+        if (response.ok) {
+            setTimeout(function () {
+                location.replace('/');
+            }, 200)
         } else {
             alert(response.statusText)
-        }console.log(response)
-    }    
+        } console.log(response)
+    }
 }
 
 
