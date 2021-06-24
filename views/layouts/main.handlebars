@@ -4,37 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ArtInerary</title>
-  <link rel="stylesheet" href="/public/stylesheet/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="/stylesheet/style.css">
+  
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>
-        <a href="/">ArtInerary</a>
-      </h1>
-      <nav>
-        {{#if loggedIn}}
-        <a href="/dashboard">My Collection Dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main>
-      {{{ body }}}
-    </main>
-    <footer>
-      Thanks for visiting!
-    </footer>
+  <nav class="navbar navbar-height:300px" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="https://res.cloudinary.com/pacsmack/image/upload/v1624514743/Assets/logo_transparent_szc7jp.png"  >
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" id="signup-modal">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<!-- modal -->
+  <div class="modal ">
+    <div class="modal-background"></div>
+    <div class="modal-content has-background-white py-5 px-5"> 
+      <h3 class="title mb-6">Join Our Art Club!</h3>
+    </div>
   </div>
-  
-  {{#if loggedIn}}
-  <script src="/javascript/logout.js"></script>
-  {{/if}}
+
+  <script src="/javascript/signup-modal.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 
 

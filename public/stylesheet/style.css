@@ -2,6 +2,15 @@
     box-sizing: border-box;
   }
   
+  body {
+    background-color: #383434; 
+    /*rgba(57,61,70,255) */
+  }
+
+  .navbar {
+    background-color: #383434;
+  }
+
   body, html {
     height: 100%;
     padding: 0;
