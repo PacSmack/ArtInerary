@@ -46,9 +46,7 @@ sequelize
     });
 
 sequelize.sync({ force: true }).then(() => {
-    if (port == null || port == "") {
-        port = 8000;
-    }
-    app.listen(port);(`Now listening to ${PORT}`);
+    
+    app.listen(PORT);(`Now listening to ${PORT}`);
 });
 
