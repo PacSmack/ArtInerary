@@ -1,0 +1,65 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-17a45bbb577-b1f3613a7315a46": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "qfatqfwuvv35xc0m",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "wcwimj6zu5aaddlj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+				"port": "3306",
+				"database": "qfatqfwuvv35xc0m",
+				"url": "jdbc:mysql://wcwimj6zu5aaddlj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qfatqfwuvv35xc0m",
+				"home": "/usr/local/mysql-8.0.25-macos11-x86_64",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		},
+		"mysql8-17a45c675c5-57b65e59a4ee01eb": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "localhost",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"home": "/usr/local/mysql-8.0.25-macos11-x86_64",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		},
+		"mysql8-17a45ca4571-701c01124073b89e": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "localhost 2",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"home": "/usr/local/mysql-8.0.25-macos11-x86_64",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

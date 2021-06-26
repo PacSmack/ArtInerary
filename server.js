@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-
+const seedAll = require("./seeds")
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
@@ -40,13 +40,17 @@ sequelize
     .authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
+        console.log('SEEDED!');
     })
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
 
 sequelize.sync({ force: true }).then(() => {
-    
-    app.listen(PORT);(`Now listening to ${PORT}`);
+    seedAll().then(() => {
+        app.listen(PORT, () => {
+            console.log(`Now listening to ${PORT}`)
+        });
+    })
 });
 
