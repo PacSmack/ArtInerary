@@ -1,5 +1,7 @@
  #  Artinerary
-   
+   ![Screen Shot 2021-06-26 at 4 45 56 PM](https://user-images.githubusercontent.com/79954805/123529152-80ddd600-d6a2-11eb-9a43-724006ed54d4.png)
+![Screen Shot 2021-06-26 at 4 46 19 PM](https://user-images.githubusercontent.com/79954805/123529156-8509f380-d6a2-11eb-86a6-9b52bf5805a0.png)
+
 
 ## Description 
 
@@ -14,8 +16,8 @@ Artinerary allows the user to choose from different source material, and create 
 - [Technologies](#technologies)
 - [Usage](#usage)
 - [Credits](#credits)
-- [Tests](#tests)
 - [Questions](#questions)
+- [Development](#development)
 
 ## Installation
 Artinerary is a deployed web application that can be found at  https://hidden-reaches-45405.herokuapp.com/
@@ -50,3 +52,6 @@ https://github.com/LindseyKrause
 
 Vanessa McGuire
 https://github.com/vmcguire6377
+
+## Development
+New versions to include like & comment functionality as well as a user landing page. 
