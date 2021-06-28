@@ -38,7 +38,7 @@ const imagedata = [
         reference_id: 11
     },
     {
-        title: 'Elle Oil',
+        title: 'Ellie Oil',
         image_url: 'https://res.cloudinary.com/scarrlettearianne/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1624570658/USER%20IMAGES/1B_qnjdes.jpg',
         user_id: 1,
         reference_id: 7

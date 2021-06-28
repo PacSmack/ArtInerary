@@ -15,6 +15,19 @@ body  {
   display: table-cell;
 }
 
+.file-upload {
+  display: inline-flex;
+  align-items: center;
+}
+
+#upload-text {
+  padding-top: 5px;
+}
+
+.upload-input {
+  display: none;
+}
+
 img {
   height: 425px;
   max-width: 100%;
@@ -34,8 +47,27 @@ img {
   text-align: center;
 }
 
+.subtitle {
+  padding-top: 10px;
+  color: white;
+  text-align: center;
+}
+
+.block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .level:not(:last-child), .message:not(:last-child), .notification:not(:last-child), .pagination:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) {
+  margin-bottom: .5rem;
+}
+
 #main-page-btn {
   padding-top: 30px;
+}
+
+#single-column-img {
+  overflow: hidden;
+}
+
+#submit-btn{
+  margin-top: 5px;
+  display: none;
 }
 
 #single-page-btn {

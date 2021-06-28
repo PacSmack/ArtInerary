@@ -1,5 +1,5 @@
 <div class="columns is-multiline is-centered px-5">
-    <div class="column is-one-third" id="single-column-img">
+    <div class="column is-one-third has-text-centered" id="single-column-img">
         <article class="tile is-child box" id="card-image">
 
             <figure class="image has-ratio ">
@@ -10,8 +10,29 @@
             </figure>
 
             <p class="title">{{title}}</p>
+
+
+
+            <div class="file-upload">
+                <form method="POST" enctype="multipart/form-data" action="/api/images/upload/{{id}}" id="upload-form">
+                    <input class="upload-input" id="upload-input" name="image" type="file" accept="image/*"></input>
+                </form>
+                {{!-- {{#if loggedIn}} --}}
+                <button class="button is-info" id="upload-btn"><strong>UPLOAD YOUR OWN!</strong></button>
+
+            </div>
+
+
+            <div>
+                <button type="submit" form="upload-form" class="button is-success"
+                    id="submit-btn"><strong>SUBMIT!</strong></button>
+            </div>
+            <div id="upload-text"><span id="file-status">No file chosen, so far.</span></div>
+            {{!-- {{/if}} --}}
+
+
         </article>
     </div>
 </div>
 
-
+<script src="/javascript/upload.js"></script>
