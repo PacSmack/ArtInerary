@@ -25,7 +25,9 @@ const seedAll = async () => {
     await seedMotto();
     console.log('--------------')
 
-    process.exit(0);
+    // process.exit(0);
 };
 
-seedAll();
+// seedAll();
+
+module.exports = seedAll;
