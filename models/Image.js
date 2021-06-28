@@ -50,6 +50,7 @@ Image.init(
         },
         user_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'user',
                 key: 'id'
@@ -57,6 +58,7 @@ Image.init(
         },
         reference_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'reference',
                 key: 'id'

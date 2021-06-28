@@ -6,6 +6,10 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 const cloudinary = require('cloudinary').v2;
+var fileUpload = require('express-fileupload')
+
+const multer = require("multer");
+const upload = multer({ dest: "path" });
 
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -34,6 +38,9 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload({
+    useTempFiles: true
+}));
 
 app.use(routes)
 sequelize
@@ -45,6 +52,7 @@ sequelize
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
 
 sequelize.sync({ force: true }).then(() => {
     seedAll().then(() => {
