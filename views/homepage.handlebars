@@ -1,1 +1,13 @@
-Test
+{{> main-page-navbar }}
+<section class="hero">
+    <div class="hero-head has-text-centered">
+        <img class="has-ratio"
+            src="https://res.cloudinary.com/pacsmack/image/upload/v1624541482/Assets/logo_transparent_szc7jp.png">
+    </div>
+</section>
+
+<div class="columns is-multiline is-desktop px-5">
+    {{#each images as |image|}}
+    {{> all-images image}}
+    {{/each}}
+</div>

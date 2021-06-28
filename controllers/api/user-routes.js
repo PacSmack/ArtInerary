@@ -1,8 +1,7 @@
 const router = require('express').Router();
-//waiting for model to be created 
-const { User } = require('../../models');
+const { User, Image, Motto } = require('../../models');
 
-// GET /api/users
+/* working */ // GET /api/users
 router.get('/', (req, res) => {
     // access ou user model and run findall method
     User.findAll({
@@ -15,7 +14,7 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET /api/users/1
+/* working */ // GET /api/users/1
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
@@ -24,18 +23,14 @@ router.get('/:id', (req, res) => {
         },
         include: [
             {
-                model: Post,
-                attributes: ['id', 'title', 'post_url', 'created_at']
+                model: Image,
+                attributes: ['id', 'image_url', 'title']
             },
             {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'created_at'],
-                include: {
-                    model: Post,
-                    attributes: ['title']
-                }
+                model: Motto,
+                attributes: ['catchphrase']
             }
-        ]
+        ],
     })
         .then(dbUserData => {
             if (!dbUserData) {
@@ -50,8 +45,9 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// POST /api/users
-router.post('/', (req, res) => {
+/* working */ // POST /api/users
+router.post('/signup', (req, res) => {
+    console.log(req.session)
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -66,8 +62,12 @@ router.post('/', (req, res) => {
                 res.json(dbUserData);
             })
         })
+        .catch(err => {
+            console.log(err);
+        })
 });
 
+/* working */ //Login /api/users/login
 router.post('/login', (req, res) => {
     //query operation
     User.findOne({
@@ -95,10 +95,12 @@ router.post('/login', (req, res) => {
             req.session.loggedIn = true;
 
             res.json({ user: dbUserData, message: 'You are now logged in!' });
+            console.log(req.session)
         });
     });
 });
 
+/* working */
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -110,7 +112,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-// PUT /api/users/1
+/* working */ // PUT /api/users/1
 router.put('/:id', (req, res) => {
     // if req body has exact key/value pairs to match the model, you can just use `req.body` instead
     User.update(req.body, {
@@ -132,7 +134,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-// DELETE /api/users/1
+/* working */ // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
@@ -151,5 +153,68 @@ router.delete('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+/* working */
+router.post('/motto', (req, res) => {
+    if (req.session) {
+        Motto.create({
+            catchphrase: req.body.catchphrase,
+            user_id: req.session.user_id
+        })
+            .then(dbMottoData => res.json(dbMottoData))
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            })
+    }
+});
+
+/* working */
+router.put('/motto/:id', (req, res) => {
+    if (req.session) {
+        Motto.update(
+            {
+                catchphrase: req.body.catchphrase,
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        )
+        .then(dbMottoData => {
+            if(!dbMottoData) {
+                res.status(404).json({ message: 'No motto found with this id'});
+                return;
+            }
+            res.json(dbMottoData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
+});
+
+/*working */
+router.delete('/motto/:id', (req, res) => {
+    if (req.session)
+    Motto.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbMottoData => {
+        if(!dbMottoData) {
+            res.status(404).json({ message: 'No motto found with this id '});
+            return;
+        }
+        res.json(dbMottoData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
 
 module.exports = router;

@@ -15,7 +15,7 @@ class Image extends Model {
                     'id',
                     'image_url',
                     'title',
-                    [sequelize.literal('(SELECT COUNT(*) FROM like WHERE image.id = like.image_id)'), 'like_count']
+                    [sequelize.literal('(SELECT COUNT(*) FROM like WHERE image.id = image_id)'), 'like_count']
                 ],
                 include: [
                     {
@@ -39,11 +39,11 @@ Image.init(
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         image_url: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isURL: true
             }
@@ -54,7 +54,15 @@ Image.init(
                 model: 'user',
                 key: 'id'
             }
+        },
+        reference_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'reference',
+                key: 'id'
+            }
         }
+
     },
     {
         sequelize,

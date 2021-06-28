@@ -1,69 +1,69 @@
 // import all models
-const Post = require('./Post');
+const Image = require('./Image');
 const User = require('./User');
-const Vote = require('./Vote');
-const Comment = require('./Comment');
+const Like = require('./Like');
+const Reference = require('./Reference');
+const Motto = require('./Motto');
 
 // create associations
-User.hasMany(Post, {
+
+User.hasMany(Image, {
     foreignKey: 'user_id'
 });
 
-Post.belongsTo(User, {
+Image.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-User.belongsToMany(Post, {
-    through: Vote,
-    as: 'voted_posts',
+User.belongsToMany(Image, {
+    through: Like,
+    as: 'liked_Images',
 
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Post.belongsToMany(User, {
-    through: Vote,
-    as: 'voted_posts',
-    foreignKey: 'post_id',
+Image.belongsToMany(User, {
+    through: Like,
+    as: 'liked_images',
+    foreignKey: 'like_id',
     onDelete: 'SET NULL'
 });
 
-Vote.belongsTo(User, {
+Like.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Vote.belongsTo(Post, {
-    foreignKey: 'post_id',
+Like.belongsTo(Image, {
+    foreignKey: 'image_id',
     onDelete: 'SET NULL'
 });
 
-User.hasMany(Vote, {
+User.hasMany(Like, {
     foreignKey: 'user_id'
 });
 
-Post.hasMany(Vote, {
-    foreignKey: 'post_id'
+Image.hasMany(Like, {
+    foreignKey: 'image_id'
 });
 
-Comment.belongsTo(User, {
+User.hasOne(Motto, {
+    foreignKey: 'user_id',    
+});
+
+Motto.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'
 });
 
-Comment.belongsTo(Post, {
-    foreignKey: 'post_id',
-    onDelete: 'SET NULL'
+Image.belongsTo(Reference, {
+    foreignKey: 'reference_id'
 });
 
-User.hasMany(Comment, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
+Reference.hasMany(Image, {
+    foreignKey: 'reference_id'
 });
 
-Post.hasMany(Comment, {
-    foreignKey: 'post_id'
-});
-
-module.exports = { User, Post, Vote, Comment };
+module.exports = { User, Image, Like, Reference, Motto };

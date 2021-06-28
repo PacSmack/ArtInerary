@@ -1,32 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // create our Reference model
-class Reference extends Model {
-    static like(body, models) {
-        return models.Like.create({
-            user_id: body.user_id,
-            reference_id: body.reference_id
-        }).then(() => {
-            return Reference.findOne({
-                where: {
-                    id: body.reference_id
-                },
-                attributes: [
-                    'id',
-                    'reference_url',
-                    'title',
-                    [sequelize.literal('(SELECT COUNT(*) FROM like WHERE reference.id = like.reference_id)'), 'like_count']
-                ],
-                include: [
-                    {
-                        model: models.User,
-                        attributes: ['username']
-                    }
-                ]
-            });
-        });
-    }
-}
+class Reference extends Model {}
 
 // create fields/columns for reference model
 Reference.init(
@@ -47,14 +22,7 @@ Reference.init(
             validate: {
                 isURL: true
             }
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        }
+        }        
     },
     {
         sequelize,
