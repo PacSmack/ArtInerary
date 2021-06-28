@@ -44,7 +44,7 @@ Research referenced written by Lindsey Krause.
 ## Questions
 If you have any questions or need additional information, you can reach the developers at the following places:
 ### Github
-Nathan Diaz 
+Nathan Dias 
 https://github.com/PacSmack
 
 LindseyKrause
