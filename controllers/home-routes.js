@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
                 loggedIn: req.session.loggedIn
 
             }); console.log(images)
+            console.log(req.session)
         })
         .catch(err => {
             console.log(err);
@@ -45,7 +46,7 @@ router.get('/image/:id', (req, res) => {
     Reference.findOne({
         where: {
             id: req.params.id
-        }, 
+        },
         attributes: [
             'id',
             'title',
@@ -66,15 +67,16 @@ router.get('/image/:id', (req, res) => {
         .then(dbImageData => {
             if (!dbImageData) {
                 res.status(404).json({ message: 'No post found with this id' });
-                return;
-            }
 
+            }
             const image = dbImageData.get({ plain: true })
 
             res.render('single-image', {
                 image,
                 loggedIn: req.session.loggedIn
-            });console.log(image)
+            }); console.log(image)
+            console.log(req.session)
+
         })
         .catch(err => {
             console.log(err);

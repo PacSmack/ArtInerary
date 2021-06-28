@@ -57,6 +57,7 @@ Image.init(
         },
         reference_id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             references: {
                 model: 'reference',
                 key: 'id'

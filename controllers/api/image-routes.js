@@ -71,20 +71,36 @@ router.get('/:id', (req, res) => {
         })
 })
 
-/*working*/
-router.post('/upload', withAuth, (req, res) => {
-    cloudinary.uploader.upload(req.body.data, (error, result) => {
+/*working gotta fix uploader and send it to front end to get body*/
+// router.post('/upload', async (req, res) => {
+//     try {
+//         const fileStr = req.body.data;
+//         const uploadedResponse = await cloudinary.uploader.
+//         upload(fileStr, {
+//             upload_preset: 'ml_default'
+//         })
+//         console.log(uploadedResponse);
+//         res.json({message: "success"})
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
+
+router.post('/upload/:id', withAuth, (req, res) => {    
+    const file = req.files.image
+    console.log(file)
+    cloudinary.uploader.upload(file.tempFilePath, (error, result) => {
         console.log(result, error)
         if (result) {
-            Image.create({
-                title: req.body.title,
+            Image.create({                
                 image_url: result.url,
                 user_id: req.session.user_id,
-                reference_id: req.body.reference.id
+                reference_id: req.params.id
             })
                 .then(image => {
                     console.log('file uploaded');
                     console.dir(image)
+                    res.redirect(`/image/${req.params.id}`)
                 })
                 .catch(err => {
                     console.log(err);
@@ -93,7 +109,6 @@ router.post('/upload', withAuth, (req, res) => {
             return
         }
     })
-    return res.json(500);
 });
 
 /* working */
